@@ -19,13 +19,7 @@ def foreach(func: Callable, params: List, parallel: bool = True) -> List:
     out = []
     if parallel:
         with Pool() as pool:
-            for x in tqdm(
-                pool.imap(
-                    func,
-                    params,
-                ),
-                total=N,
-            ):
+            for x in tqdm(pool.imap(func, params), total=N):
                 out.append(x)
         return out
     else:
