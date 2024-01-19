@@ -15,7 +15,7 @@ pip install foreach
 ## Usage
 
 ```python
-from foreach import foreach
+import foreach
 
 def square(x):
     return x**2

@@ -1,3 +1,5 @@
+import sys
+
 from typing import Callable, List
 from multiprocessing import Pool
 from tqdm import tqdm
@@ -26,3 +28,6 @@ def foreach(func: Callable, params: List, parallel: bool = True) -> List:
         for param in tqdm(params):
             out.append(func(param))
         return out
+
+
+sys.modules[__name__] = foreach 

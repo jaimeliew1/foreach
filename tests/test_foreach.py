@@ -1,5 +1,5 @@
 import pytest
-from foreach import foreach
+import foreach
 
 
 def square(x):
