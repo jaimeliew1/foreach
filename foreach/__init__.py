@@ -1,6 +1,6 @@
 import sys
-from multiprocessing import Pool
-from typing import Callable, Iterable, List
+from multiprocessing import get_context
+from typing import Callable, Iterable, List, Literal, Optional
 
 from tqdm import tqdm
 
@@ -9,8 +9,9 @@ def foreach(
     func: Callable,
     params: Iterable,
     parallel: bool = True,
-    processes: int = None,
-    callback: Callable = None,
+    processes: Optional[int] = None,
+    callback: Optional[Callable] = None,
+    context: Optional[Literal["fork", "spawn", "forkserver"]] = None,
 ) -> List:
     """
     Parallelly apply a given function to each element in the input iterable.
@@ -21,7 +22,7 @@ def foreach(
     - parallel (bool): If True, use multiprocessing for parallel execution.
     - processes (int): Number of processes to use in parallel execution (default is None, letting Pool decide).
     - callback (Callable): Optional callback function to execute after each iteration.
-
+    - context (str): Context of how multiprocessing spawns new processes.
     Returns:
     - List: A list of results from applying the function to each element.
     """
@@ -30,7 +31,7 @@ def foreach(
 
     out = []
     if parallel:
-        with Pool(processes=processes) as pool:
+        with get_context(context).Pool(processes=processes) as pool:
             for result in tqdm(pool.imap(func, params), total=N):
                 out.append(result)
                 if callback:
