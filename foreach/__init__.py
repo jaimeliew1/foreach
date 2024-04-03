@@ -44,6 +44,3 @@ def foreach(
             if callback:
                 callback(result)
         return out
-
-
-sys.modules[__name__] = foreach
