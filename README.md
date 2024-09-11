@@ -15,7 +15,7 @@ pip install foreach
 ## Usage
 
 ```python
-import foreach
+from foreach import foreach
 
 def square(x):
     return x**2
@@ -47,7 +47,7 @@ Returns:
 ### Sequential Execution
 
 ```python
-import foreach
+from foreach import foreach
 
 def square(x):
     return x**2
@@ -62,7 +62,7 @@ print(result)
 ### Callback Functionality
 
 ```python
-import foreach
+from foreach import foreach
 
 def square(x):
     return x**2
@@ -83,7 +83,7 @@ result = foreach(square, params, callback=callback)
 ### Customizing Number of Processes
 
 ```python
-import foreach
+from foreach import foreach
 
 def square(x):
     return x**2
